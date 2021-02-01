@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { User.create!(username: 'bob49', password: 'bobpassword') }
 
   describe 'validations' do
     it { should validate_presence_of(:username) }
@@ -14,6 +13,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#is_password?' do
+    let(:user) { User.create!(username: 'bob49', password: 'bobpassword') }
+
     context 'password is valid' do
       it 'should return true' do
         expect(user.is_password?('bobpassword')).to eq(true)
@@ -28,6 +29,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#reset_session_token!' do
+    let(:user) { User.create!(username: 'bob49', password: 'bobpassword') } 
+
     it 'should set a new session token for User' do
       user.session_token = 'garbage'
       user.save
@@ -37,6 +40,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '::find_by_credentials' do
+    let(:user) { User.create!(username: 'bob49', password: 'bobpassword') }
+
     before(:each) do
       user.valid?
     end
@@ -61,6 +66,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
-
 end
