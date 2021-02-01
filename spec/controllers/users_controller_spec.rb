@@ -9,10 +9,10 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to be_successful
     end
 
-    it "assings a new User to @user" do
-      new_user = User.new
+    it "assigns a new User to @user" do
+      @user = User.new
       get :new, {}
-      expect(assings[:user]).to eq(new_user)
+      expect(assigns[:user].id).to eq(@user.id)
     end
 
     it "renders the new template" do
@@ -59,10 +59,10 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #show' do
 
-    it 'assings the requested user to @user' do
+    it 'assigns the requested user to @user' do
       user = Factory(:user)
       get :show, id: user
-      expect(assings[:user]).to eq(user)  
+      expect(assigns[:user]).to eq(user)  
     end
 
     it 'renders the show template' do
@@ -81,7 +81,7 @@ RSpec.describe UsersController, type: :controller do
   it "assign given user to @user" do
     Factory(:user)
     get :edit, id: Factory(:user)
-    expect(assings[:user]).to eq(User.last)
+    expect(assigns[:user]).to eq(User.last)
   end
     
   it "renders edit template" do
@@ -98,7 +98,7 @@ end
     context "with invalid params" do
       it "locates the requested @user" do
         put :update, id: @user, user: Factory.attributes_for(:user, username: "bob49", password: "bob")
-        expect(assings[:user]).to eq(@user)
+        expect(assigns[:user]).to eq(@user)
       end
 
       it "does not change @user's attributes" do
@@ -112,7 +112,7 @@ end
     context "with valid params" do
       it "locates the requested @user" do
         put :update, id: @user, user: Factory.attributes_for(:user)
-        expect(assings[:user]).to eq(@user)
+        expect(assigns[:user]).to eq(@user)
       end
       
       it "changes @user's attributes" do
