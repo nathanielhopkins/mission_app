@@ -73,15 +73,75 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #edit' do
 
-    it "should render edit template" do
-      get :edit, id: Factory(:user)
-      expect(response).to render_template("edit")
+  it "returns a successful response" do
+    get :edit, id: Factory(:user)
+    expect(response).to be_successful
+  end
+
+  it "assign given user to @user" do
+    Factory(:user)
+    get :edit, id: Factory(:user)
+    expect(assings[:user]).to eq(User.last)
+  end
+    
+  it "renders edit template" do
+    get :edit, id: Factory(:user)
+    expect(response).to render_template("edit")
+  end
+end
+
+  describe 'PUT #edit' do
+    before :each do
+      @user = Factory(:user)
+    end
+
+    context "with invalid params" do
+      it "locates the requested @user" do
+        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob49", password: "bob")
+        expect(assings[:user]).to eq(@user)
+      end
+
+      it "does not change @user's attributes" do
+        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob50", password: "bob")
+        @user.reload
+        @user.username.should eq("bob49")
+        @user.password.should_not eq("bob50")
+      end
+    end
+
+    context "with valid params" do
+      it "locates the requested @user" do
+        put :update, id: @user, user: Factory.attributes_for(:user)
+        expect(assings[:user]).to eq(@user)
+      end
+      
+      it "changes @user's attributes" do
+        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob50", password: "bobpassword")
+        @user.reload
+        @user.username.should eq("bob50")
+      end
+
+      it "redirects to the updated user" do
+        put :update, id: @user, user: Factory.attributes_for(:user)
+        expect(response).to redirect_to @contact
+      end
     end
   end
 
-  describe 'POST #edit' do
-  end
-
   describe 'DELETE #destroy' do
+    before :each do
+      @user = Factory(:user)
+    end
+
+    it "deletes the user" do
+      expect{
+        delete :destroy, id: @user        
+      }.to change(User,:count).by(-1)
+    end
+
+    it "redirects to users#index" do
+      delete :destroy, id: @user
+      expect(response).to redirect_to users_url
+    end
   end
 end
