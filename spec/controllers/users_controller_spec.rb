@@ -34,6 +34,11 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to render_template('new')
         expect(flash[:errors]).to eq(["Password is too short (minimum is 6 characters)"])
       end
+
+      it "renders new template" do
+        post :create, params: { user: { username: 'bob49', password: 'buns'}}
+        expect(response).to render_template("new")
+      end
     end
 
     context "with valid params" do
