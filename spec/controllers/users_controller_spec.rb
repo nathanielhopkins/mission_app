@@ -89,11 +89,6 @@ RSpec.describe UsersController, type: :controller do
     get :edit, id: FactoryBot.create(:user)
     expect(response).to be_successful
   end
-
-  it "assign given user to @user" do
-    get :edit, id: FactoryBot.create(:user)
-    expect(assigns[:user]).to eq(User.last)
-  end
     
   it "renders edit template" do
     get :edit, id: FactoryBot.create(:user)
