@@ -64,15 +64,22 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #show' do
 
-    it 'assigns the requested user to @user' do
+    it 'renders the show template' do
       user = FactoryBot.create(:user)
-      get :show, id: user
-      expect(assigns[:user]).to eq(user)  
+      get :show, params: {id: user.id}
+      expect(response).to render_template("show")
     end
 
-    it 'renders the show template' do
-      get :show, id: FactoryBot.create(:user)
-      expect(response).to render_template("show")
+    context 'if the user does not exist' do
+      it 'is not a success' do
+        begin
+          get :show, params: { id: -1 }
+        rescue
+          ActiveRecord::RecordNotFound
+        end
+
+        expect(response).not_to render_template(:show)
+      end
     end
   end
 
