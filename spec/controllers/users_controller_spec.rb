@@ -65,13 +65,13 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #show' do
 
     it 'assigns the requested user to @user' do
-      user = Factory(:user)
+      user = FactoryBot.create(:user)
       get :show, id: user
       expect(assigns[:user]).to eq(user)  
     end
 
     it 'renders the show template' do
-      get :show, id: Facory(:user)
+      get :show, id: FactoryBot.create(:user)
       expect(response).to render_template("show")
     end
   end
@@ -79,35 +79,34 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #edit' do
 
   it "returns a successful response" do
-    get :edit, id: Factory(:user)
+    get :edit, id: FactoryBot.create(:user)
     expect(response).to be_successful
   end
 
   it "assign given user to @user" do
-    Factory(:user)
-    get :edit, id: Factory(:user)
+    get :edit, id: FactoryBot.create(:user)
     expect(assigns[:user]).to eq(User.last)
   end
     
   it "renders edit template" do
-    get :edit, id: Factory(:user)
+    get :edit, id: FactoryBot.create(:user)
     expect(response).to render_template("edit")
   end
 end
 
   describe 'PUT #edit' do
     before :each do
-      @user = Factory(:user)
+      @user = FactoryBot.create(:user)
     end
 
     context "with invalid params" do
       it "locates the requested @user" do
-        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob49", password: "bob")
+        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob49", password: "bob")
         expect(assigns[:user]).to eq(@user)
       end
 
       it "does not change @user's attributes" do
-        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob50", password: "bob")
+        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bob")
         @user.reload
         @user.username.should eq("bob49")
         @user.password.should_not eq("bob50")
@@ -116,18 +115,18 @@ end
 
     context "with valid params" do
       it "locates the requested @user" do
-        put :update, id: @user, user: Factory.attributes_for(:user)
+        put :update, id: @user, user: FactoryBot.attributes_for(:user)
         expect(assigns[:user]).to eq(@user)
       end
       
       it "changes @user's attributes" do
-        put :update, id: @user, user: Factory.attributes_for(:user, username: "bob50", password: "bobpassword")
+        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bobpassword")
         @user.reload
         @user.username.should eq("bob50")
       end
 
       it "redirects to the updated user" do
-        put :update, id: @user, user: Factory.attributes_for(:user)
+        put :update, id: @user, user: FactoryBot.attributes_for(:user)
         expect(response).to redirect_to @contact
       end
     end
@@ -135,7 +134,7 @@ end
 
   describe 'DELETE #destroy' do
     before :each do
-      @user = Factory(:user)
+      @user = FactoryBot.create(:user)
     end
 
     it "deletes the user" do
