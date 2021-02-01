@@ -86,12 +86,12 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #edit' do
 
   it "returns a successful response" do
-    get :edit, id: FactoryBot.create(:user)
+    get :edit, params: {id: FactoryBot.create(:user)}
     expect(response).to be_successful
   end
     
   it "renders edit template" do
-    get :edit, id: FactoryBot.create(:user)
+    get :edit, params: {id: FactoryBot.create(:user)}
     expect(response).to render_template("edit")
   end
 end
