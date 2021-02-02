@@ -7,7 +7,6 @@ RSpec.describe Goal, type: :model do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:private) }
     it { should validate_presence_of(:completed) }
-    it { should validate_presence_of(:username) }
   end
 
   describe 'associations' do
