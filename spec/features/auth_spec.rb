@@ -27,10 +27,7 @@ feature 'logging in' do
  
   before :each do
     FactoryBot.create(:user) if User.all.empty?
-    visit new_session_url
-    fill_in 'username', with: 'bob49'
-    fill_in 'password', with: 'bobpassword'
-    click_on 'Sign In'
+    login_test_user
   end
 
   scenario 'shows username on the homepage after login' do
@@ -48,10 +45,7 @@ feature 'logging out' do
   end
 
   scenario 'doesn\'t show username on the homepage after logout' do
-    visit new_session_url
-    fill_in "username", with: "bob49"
-    fill_in "password", with: "bobpassword"
-    click_button "Sign In"
+    login_test_user
     click_button "Logout"
     expect(page).not_to have_content "bob49"
   end
