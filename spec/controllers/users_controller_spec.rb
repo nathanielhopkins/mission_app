@@ -102,33 +102,23 @@ end
     end
 
     context "with invalid params" do
-      it "locates the requested @user" do
-        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob49", password: "bob")
-        expect(assigns[:user]).to eq(@user)
-      end
-
       it "does not change @user's attributes" do
-        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bob")
+        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bob") }
         @user.reload
         @user.username.should eq("bob49")
-        @user.password.should_not eq("bob50")
+        expect(@user.password).to_not eq("bob50")
       end
     end
 
     context "with valid params" do
-      it "locates the requested @user" do
-        put :update, id: @user, user: FactoryBot.attributes_for(:user)
-        expect(assigns[:user]).to eq(@user)
-      end
-      
       it "changes @user's attributes" do
-        put :update, id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bobpassword")
+        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bobpassword") }
         @user.reload
-        @user.username.should eq("bob50")
+        expect(@user.username).to eq("bob50")
       end
 
       it "redirects to the updated user" do
-        put :update, id: @user, user: FactoryBot.attributes_for(:user)
+        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user) }
         expect(response).to redirect_to @contact
       end
     end
@@ -141,12 +131,12 @@ end
 
     it "deletes the user" do
       expect{
-        delete :destroy, id: @user        
+        delete :destroy, params: { id: @user }
       }.to change(User,:count).by(-1)
     end
 
     it "redirects to users#index" do
-      delete :destroy, id: @user
+      delete :destroy, params: { id: @user }
       expect(response).to redirect_to users_url
     end
   end
