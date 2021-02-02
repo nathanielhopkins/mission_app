@@ -1,5 +1,6 @@
 class Goal < ApplicationRecord
-  validates :user_id, :title, :private, :completed, presence: true
+  validates :user_id, presence: true
+  validates :title, presence: true, length: { minimum: 6 }
 
   belongs_to(
     :user,
