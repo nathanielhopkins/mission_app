@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
     render :index    
   end
 
@@ -37,6 +38,23 @@ class UsersController < ApplicationController
     else
       redirect_to users_url
     end
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to user_url(@user)
+    else
+      flash.now[:errors] = @user.errors.full_messages  
+      render :edit
+    end
+  end
+  
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to users_url
   end
 
   private
