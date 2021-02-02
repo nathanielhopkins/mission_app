@@ -7,6 +7,14 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many(
+    :goals,
+    dependent: :destroy,
+    class_name: "Goal",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
