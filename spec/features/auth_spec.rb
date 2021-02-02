@@ -48,7 +48,10 @@ feature 'logging out' do
   end
 
   scenario 'doesn\'t show username on the homepage after logout' do
-    login_as(user)
+    visit new_session_url
+    fill_in "username", with: "bob49"
+    fill_in "password", with: "bobpassword"
+    click_button "Sign In"
     click_button "Logout"
     expect(page).not_to have_content "bob49"
   end
