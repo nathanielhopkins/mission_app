@@ -4,6 +4,11 @@ require 'spec_helper'
 RSpec.describe User, type: :model do
 
   subject(:user) { User.create!(username: 'bob49', password: 'bobpassword') }
+  let(:g1) { Goal.create(user_id: user.id, title: 'Goal user.id', completed: true) }
+  let(:g2) { Goal.create(user_id: user.id, title: 'Goal 2', completed: true) }
+  let(:g3) { Goal.create(user_id: user.id, title: 'Goal 3', completed: true) }
+  let(:g4) { Goal.create(user_id: user.id, title: 'Goal 4') }
+  let(:g5) { Goal.create(user_id: user.id, title: 'Goal 5') }
 
   describe 'validations' do
     it { should validate_presence_of(:username) }
@@ -66,7 +71,6 @@ RSpec.describe User, type: :model do
   end
 
   describe '#completed_goals' do
-    test_goals
 
     it "returns all of users goals where completed = true" do
       cg = user.completed_goals
@@ -79,7 +83,6 @@ RSpec.describe User, type: :model do
   end
 
   describe '#uncompleted_goals' do
-    test_goals
 
     it "returns all of users goals where completed = false" do
       ug = user.uncompleted_goals
@@ -93,7 +96,6 @@ RSpec.describe User, type: :model do
   end
 
   describe '#number_of_completed_goals' do
-    test_goals
 
     it "returns the correct count of users completed goals" do
       num_complete = user.number_of_completed_goals
@@ -102,7 +104,6 @@ RSpec.describe User, type: :model do
   end
 
   describe '#number_of_uncompleted_goals' do
-    test_goals
     
     it "returns the correct count of users uncompleted goals" do
       num_uncomp = user.number_of_uncompleted_goals
