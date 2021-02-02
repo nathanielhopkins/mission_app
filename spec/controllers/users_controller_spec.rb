@@ -102,6 +102,24 @@ end
     end
 
     context "with invalid params" do
+
+      it "renders the new template" do
+        put :update, params: { user: { username: ''}}
+        expect(response).to render_template('edit')
+      end
+
+      it "validates the presence of the user's username and password" do
+        put :update, params: { user: { username: ''}}
+        expect(response).to render_template('edit')
+        expect(flash[:errors]).to be_present
+      end
+
+      it "validates that the password is at least 6 characters long" do
+        put :update, params: { user: { password: 'buns'}}
+        expect(response).to render_template('edit')
+        expect(flash[:errors]).to eq(["Password is too short (minimum is 6 characters)"])
+      end
+
       it "does not change @user's attributes" do
         put :update, params: { id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bob") }
         @user.reload
