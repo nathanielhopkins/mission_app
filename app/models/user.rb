@@ -42,8 +42,13 @@ class User < ApplicationRecord
   end
 
   #GOALS
+
   def completed_goals
     completed = self.goals.where(completed: true)
+  end
+
+  def uncompleted_goals
+    uncompleted = self.goals.where(completed: false)
   end
 
   private
