@@ -66,20 +66,47 @@ RSpec.describe User, type: :model do
   end
 
   describe '#completed_goals' do
-    it "returns all of users goals where completed = true"
-    it "does not return goals where completed = false"
+    test_goals
+
+    it "returns all of users goals where completed = true" do
+      cg = user.completed_goals
+      expect(cg).to include(g1, g2, g3)
+    end
+    it "does not return goals where completed = false" do
+      cg = user.completed_goals
+      expect(cg).not_to include(g4)
+    end
   end
 
   describe '#uncompleted_goals' do
-    it "returns all of users goals where completed = false"
-    it "does not return goals where completed = false"
+    test_goals
+
+    it "returns all of users goals where completed = false" do
+      ug = user.uncompleted_goals
+      expect(ug).to include(g4, g5)
+    end
+
+    it "does not return goals where completed = false" do
+      ug = user.uncompleted_goals
+      expect(ug).not_to include(g1)
+    end
   end
 
   describe '#number_of_completed_goals' do
-    it "returns the correct count of users completed goals"
+    test_goals
+
+    it "returns the correct count of users completed goals" do
+      num_complete = user.number_of_completed_goals
+      expect(num_complete).to eq(3)
+    end
   end
 
   describe '#number_of_uncompleted_goals' do
-    it "returns the correct count of users uncompleted goals"
+    test_goals
+    
+    it "returns the correct count of users uncompleted goals" do
+      num_uncomp = user.number_of_uncompleted_goals
+      expec(num_uncomp).to eq(2)
+    end
   end
 end

@@ -101,3 +101,13 @@ def login_test_user
   fill_in 'password', with: 'bobpassword'
   click_on 'Sign In'
 end
+
+def test_goals
+  before :each do
+    g1 = Goal.create(user_id: 1, title: 'Goal 1', completed: true)
+    g2 = Goal.create(user_id: 1, title: 'Goal 2', completed: true)
+    g3 = Goal.create(user_id: 1, title: 'Goal 3', completed: true)
+    g4 = Goal.create(user_id: 1, title: 'Goal 4')
+    g5 = Goal.create(user_id: 1, title: 'Goal 5')
+  end
+end
