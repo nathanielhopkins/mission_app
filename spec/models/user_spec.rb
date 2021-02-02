@@ -94,20 +94,4 @@ RSpec.describe User, type: :model do
       expect(ug).not_to include(g1)
     end
   end
-
-  describe '#number_of_completed_goals' do
-
-    it "returns the correct count of users completed goals" do
-      num_complete = user.number_of_completed_goals
-      expect(num_complete).to eq(3)
-    end
-  end
-
-  describe '#number_of_uncompleted_goals' do
-    
-    it "returns the correct count of users uncompleted goals" do
-      num_uncomp = user.number_of_uncompleted_goals
-      expec(num_uncomp).to eq(2)
-    end
-  end
 end
