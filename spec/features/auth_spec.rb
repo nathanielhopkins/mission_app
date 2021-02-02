@@ -24,7 +24,18 @@ feature 'the signup process' do
 end
 
 feature 'logging in' do
-  scenario 'shows username on the homepage after login'
+ 
+  before :each do
+    FactoryBot.create if User.all.empty?
+    visit new_session_url
+    fill_in 'username', with: 'bob49'
+    fill_in 'password', with: 'bobpassword'
+    click_on 'Sign In'
+  end
+
+  scenario 'shows username on the homepage after login' do
+    expect(page).to have_content "bob49"
+  end
 
 end
 
