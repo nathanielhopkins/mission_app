@@ -26,7 +26,7 @@ end
 feature 'logging in' do
  
   before :each do
-    FactoryBot.create if User.all.empty?
+    FactoryBot.create(:user) if User.all.empty?
     visit new_session_url
     fill_in 'username', with: 'bob49'
     fill_in 'password', with: 'bobpassword'
