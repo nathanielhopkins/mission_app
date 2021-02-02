@@ -41,6 +41,11 @@ class User < ApplicationRecord
     user.is_password?(password) ? user : nil
   end
 
+  #GOALS
+  def completed_goals
+    completed = self.goals.where(completed: true)
+  end
+
   private
   def ensure_session_token
     self.session_token ||= User.generate_session_token
