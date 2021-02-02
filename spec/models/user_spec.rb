@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
+    it { should have_many(:goals) }
   end
 
   describe '#is_password?' do
@@ -62,5 +63,23 @@ RSpec.describe User, type: :model do
         end
       end
     end
+  end
+
+  describe '#completed_goals' do
+    it "returns all of users goals where completed = true"
+    it "does not return goals where completed = false"
+  end
+
+  describe '#uncompleted_goals' do
+    it "returns all of users goals where completed = false"
+    it "does not return goals where completed = false"
+  end
+
+  describe '#number_of_completed_goals' do
+    it "returns the correct count of users completed goals"
+  end
+
+  describe '#number_of_uncompleted_goals' do
+    it "returns the correct count of users uncompleted goals"
   end
 end
