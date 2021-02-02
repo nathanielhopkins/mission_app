@@ -40,8 +40,16 @@ feature 'logging in' do
 end
 
 feature 'logging out' do
-  scenario 'begins with a logged out state'
+  given!(:user) { FactoryBot.create(:user) }
 
-  scenario 'doesn\'t show username on the homepage after logout'
+  scenario 'begins with a logged out state' do
+    visit root_url
+    expect(page).to have_content "Login"
+  end
 
+  scenario 'doesn\'t show username on the homepage after logout' do
+    login_as(user)
+    click_button "Logout"
+    expect(page).not_to have_content "bob49"
+  end
 end
