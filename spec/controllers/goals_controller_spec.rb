@@ -273,11 +273,15 @@ RSpec.describe GoalsController, type: :controller do
     end
 
     context 'goal does not belong to current_user' do
+      before(:each) do
+        @goal = Goal.create(user_id: bob49.id, title: 'test goal')
+      end
+      
       it 'does not delete the goal' do
         allow(controller).to receive(:current_user) { other_user }
         expect{
           delete :destroy, params: { id: @goal.id }
-        }.to_not change(Goal,:count).by(-1)
+      }.not_to change(Goal,:count)
       end
 
       it 'redirects to current_user show page' do
