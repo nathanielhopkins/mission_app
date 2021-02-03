@@ -17,6 +17,12 @@ class GoalsController < ApplicationController
       render :new
     end
   end
+
+  def index
+    @goals = Goal.all
+    render :index
+  end
+
   private
   def goal_params
     params.require(:goal).permit(:title, :details, :private, :completed)
