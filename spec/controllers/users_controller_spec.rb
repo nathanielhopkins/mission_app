@@ -96,7 +96,7 @@ RSpec.describe UsersController, type: :controller do
   end
 end
 
-  describe 'PUT #edit' do
+  describe 'PUT #update' do
     before :each do
       @user = FactoryBot.create(:user)
     end
