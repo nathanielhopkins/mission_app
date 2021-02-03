@@ -35,6 +35,13 @@ class GoalsController < ApplicationController
 
   def edit
     @goal = Goal.find_by(id: params[:id])
+    redirect_to user_url(current_user) if !@goal
+
+    if @goal.user_id == current_user.id
+      render :edit
+    else
+      redirect_to goal_url(@goal)
+    end
   end
 
   private
