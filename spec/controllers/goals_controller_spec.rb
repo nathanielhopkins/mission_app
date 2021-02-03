@@ -40,11 +40,6 @@ RSpec.describe GoalsController, type: :controller do
       end
 
       context 'with valid params' do
-        it 'returns a successful response' do
-          post :create, params: { goal: { title: 'test goal', details: 'this is only a test'}}
-          expect(response).to be_successful
-        end
-
         it 'redirects to created Goal show page' do
           post :create, params: { goal: { title: 'test goal', details: 'this is only a test'}}
           expect(response).to redirect_to(goal_url(Goal.last))
