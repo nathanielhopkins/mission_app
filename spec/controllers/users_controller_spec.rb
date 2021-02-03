@@ -103,7 +103,7 @@ end
 
     context "with invalid params" do
 
-      it "renders the new template" do
+      it "renders the edit template" do
         put :update, params: { id: @user, user: { username: ''}}
         expect(response).to render_template('edit')
       end
