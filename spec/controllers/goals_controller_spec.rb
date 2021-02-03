@@ -115,7 +115,7 @@ RSpec.describe GoalsController, type: :controller do
       end
       
       it 'renders the show template' do
-        goal = Goal.create(user_id: user.id, title: 'test goal')
+        goal = Goal.create(user_id: bob49.id, title: 'test goal')
         get :show, params: { id: goal.id }
         expect(response).to render_template("show")
       end
