@@ -214,6 +214,7 @@ RSpec.describe GoalsController, type: :controller do
       context 'with valid params' do
         it 'changes the goal attributes' do
           put :update, params: { id: @goal.id, goal: { details: "the test seems to work"}}
+          @goal = Goal.find_by(id: @goal.id)
           expect(@goal.details).to eq("the test seems to work")    
         end
 
@@ -227,6 +228,7 @@ RSpec.describe GoalsController, type: :controller do
         it 'does not update attributes' do
           allow(controller).to receive(:current_user) { other_user }
           put :update, params: { id: @goal.id, goal: { details: "the test seems to work"}}
+          @goal = Goal.find_by(id: @goal.id)
           expect(@goal.details).not_to eq("the test seems to work")
         end
 
