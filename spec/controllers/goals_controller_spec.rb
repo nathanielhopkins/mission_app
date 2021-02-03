@@ -90,11 +90,6 @@ RSpec.describe GoalsController, type: :controller do
         allow(controller).to receive(:current_user) { bob49 }
       end
 
-      it 'returns a successful response' do
-        get :index
-        expect(repsonse).to be_successful
-      end
-
       it 'renders index template' do
         get :index
         expect(response).to render_template("index")
