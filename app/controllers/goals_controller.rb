@@ -23,6 +23,20 @@ class GoalsController < ApplicationController
     render :index
   end
 
+  def show
+    @goal = Goal.find_by(id: params[:id])
+
+    if @goal
+      render :show
+    else
+      redirect_to user_url(current_user)
+    end
+  end
+
+  def edit
+    @goal = Goal.find_by(id: params[:id])
+  end
+
   private
   def goal_params
     params.require(:goal).permit(:title, :details, :private, :completed)
