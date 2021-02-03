@@ -166,7 +166,7 @@ RSpec.describe GoalsController, type: :controller do
 
       context 'goal does not belong to current_user' do
         it 'redirects to goal show page' do
-          allow(controller).to receieve(:current_user) { other_user }
+          allow(controller).to receive(:current_user) { other_user }
           get :edit, params: { id: @goal.id }
           expect(response).to redirect_to(goal_url(@goal))
         end
