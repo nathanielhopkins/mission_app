@@ -189,7 +189,7 @@ RSpec.describe GoalsController, type: :controller do
     context 'when logged in' do
       before(:each) do
         allow(controller).to receive(:current_user) { bob49 }
-        @goal = Goal.create(user_id: current_user.id, title: 'test goal', details: 'this is just a test.')
+        @goal = Goal.create(user_id: bob49.id, title: 'test goal', details: 'this is just a test.')
       end
 
       context 'with invalid params' do
