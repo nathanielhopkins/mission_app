@@ -28,11 +28,11 @@
   <body>
     <div class="notices/errors">
       <% if flash[:notices] %>
-        <%= flash[:notices].join(", ")
+        <%= flash[:notices].join(", ") %>
         <br>
       <% end %>
       <% if flash[:errors] %>
-        <%= flash[:errors].join(", ")
+        <%= flash[:errors].join(", ") %>
         <br>
       <% end %>
     </div>
