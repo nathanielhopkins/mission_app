@@ -9,6 +9,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header class="site-header">
+    <h1 class="main-logo">MISSION APP</h1>
+    <div class="login-info">
+      <% if current_user %>
+        <p><%= current_user.username %></p>
+        <form action="<%= session_url %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <%= auth_token %>
+          <input type="submit" value="Logout">
+        </form>
+      <% else %>
+        <p><a data-turbolinks="false" href="<%= new_session_url %>">Login</a></p>
+        <p><a data-turbolinks="false" href="<%= new_user_url %>">Sign Up</a></p>
+      <% end %>
+    </div>
+  </header>
   <body>
     <%= yield %>
   </body>
