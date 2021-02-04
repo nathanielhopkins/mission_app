@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "privacy of goals" do
   given!(:user) { FactoryBot.create(:user) }
-  given!(:other_user) { FactoryBot.create(:other_user) }
+  given!(:other_user) { FactoryBot.create(:user, username: 'other_user') }
 
   describe 'public goals' do
     given!(:goal) { FactoryBot.create(:goal, user: user) }
