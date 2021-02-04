@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 #TO DO:
-# - Write FactoryBot for goals
+# - Write FactoryBot for goals --DONE--
 # - Write in support/goal_features_helper.rb:
-    #  - #build_three_goals
-    #  - #verify_three_goals
-# - Write out scenario specs
+    #  - #submit_new_goal  --DONE--
+    #  - #build_three_goals  --DONE--
+    #  - #verify_three_goals  --DONE--
+# - Write out scenario specs  
 # - Write Views to pass specs
 
 feature "Create, Read, Update, Destroy Goals" do
