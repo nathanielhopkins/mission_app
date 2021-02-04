@@ -1,0 +1,9 @@
+<h3 class="main-heading">Goal:</h3>
+
+<div class="goal-details">
+  <p><strong>Title:</strong> <%= @goal.title %></p>
+  <p><strong>Details:</strong> <%= @goal.details %></p>
+  <p><strong>Visibility:</strong> <%= @goal.private == true ? "Private" : "Public"%></p>
+  <p><strong>Finished?:</strong> <%= @goal.completed==true ? "Completed" : "Ongoing" %></p>
+  <p><%= render "shared/goal_complete_button", goal: @goal %></p>
+</div>
