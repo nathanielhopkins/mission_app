@@ -101,3 +101,10 @@ def login_test_user
   fill_in 'password', with: 'bobpassword'
   click_on 'Sign In'
 end
+
+def login_other_user
+  visit new_session_url
+  fill_in 'username', with: 'other_user'
+  fill_in 'password', with: 'bobpassword'
+  click_on 'Sign In'
+end
