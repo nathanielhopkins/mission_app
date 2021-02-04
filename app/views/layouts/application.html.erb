@@ -26,6 +26,17 @@
     </div>
   </header>
   <body>
+    <div class="notices/errors">
+      <% if flash[:notices] %>
+        <%= flash[:notices].join(", ")
+        <br>
+      <% end %>
+      <% if flash[:errors] %>
+        <%= flash[:errors].join(", ")
+        <br>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
-</html>
+  </html>
+  
