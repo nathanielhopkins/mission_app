@@ -30,13 +30,13 @@ class GoalsController < ApplicationController
     if @goal
       render :show
     else
-      redirect_to user_url(current_user)
+      redirect_to goals_url
     end
   end
 
   def edit
     @goal = Goal.find_by(id: params[:id])
-    redirect_to user_url(current_user) if !@goal
+    redirect_to goals_url if !@goal
 
     if @goal.user_id == current_user.id
       render :edit
@@ -47,7 +47,7 @@ class GoalsController < ApplicationController
 
   def update
     @goal = Goal.find_by(id: params[:id])
-    redirect_to user_url(current_user) if !@goal
+    redirect_to goals_url if !@goal
 
     if @goal.user_id == current_user.id
       if @goal.update_attributes(goal_params)
@@ -69,7 +69,7 @@ class GoalsController < ApplicationController
       @goal.destroy
     end
     
-    redirect_to user_url(current_user)
+    redirect_to goals_url
   end
 
   private
