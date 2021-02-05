@@ -80,7 +80,7 @@ feature "goal completeness tracking" do
       scenario "redirects to the same page after updating goal" do
         visit user_url(user)
         click_button "goal_#{goal.id}_completed"
-        expect(page).to have_content("Completed")
+        expect(page).to have_content("Complete")
         expect(page).to have_content("bob49's Profile")
         expect(page).to have_content("bob49's Goals:")
       end
