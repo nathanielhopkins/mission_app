@@ -66,6 +66,7 @@ class GoalsController < ApplicationController
     @goal = Goal.find_by(id: params[:id])
     
     if @goal.user_id == current_user.id
+      flash[:notices] = ["Goal deleted!"]
       @goal.destroy
     end
     
