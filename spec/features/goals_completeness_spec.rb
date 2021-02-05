@@ -42,7 +42,7 @@ feature "goal completeness tracking" do
 
       scenario "redirects to the same show page after updating goal" do
         visit goal_url(goal)
-        click button "goal_#{goal.id}_completed"
+        click_button "goal_#{goal.id}_completed"
         expect(page).to have_content("Goal:")
         expect(page).to have_content("Title:")
         expect(page).to have_content(goal.title)
