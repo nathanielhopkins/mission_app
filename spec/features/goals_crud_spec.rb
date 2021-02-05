@@ -33,7 +33,7 @@ feature "Create, Read, Update, Destroy Goals" do
         scenario "should have a page for updating existing goals" do
             visit edit_goal_url(goal)
             expect(page).to have_content "Edit Goal"
-            expec(find_field('title').value).to eq(goal.title)
+            expect(find_field('title').value).to eq(goal.title)
         end
 
         scenario "should show the updated goal after changes are saved" do
