@@ -1,0 +1,7 @@
+<h3 class="main-header">Your Goals:</h3>
+
+<ul class="goals-basic-list">
+<% @goals.each do |goal| %>
+  <li><%= render 'shared/basic_goal_info', goal: goal %></li>
+<% end %>
+</ul>

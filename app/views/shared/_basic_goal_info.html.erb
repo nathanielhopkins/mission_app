@@ -1,0 +1,11 @@
+<p><a data-turbolinks="false" 
+    href="<%= goal_url(goal) %>"
+    ><%= goal.title %></a></p>
+
+<p><i><%= (goal.private == false) ? "public" : "private" %></i></p>
+
+<p><i><%= (goal.completed == false) ? "Ongoing" : "Complete" %></i></p>
+
+<p><%= render "shared/goal_complete_button", goal: goal %></p>
+
+<p><%= render "shared/goal_delete_button", goal: goal %></p>

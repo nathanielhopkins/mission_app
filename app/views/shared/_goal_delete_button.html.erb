@@ -1,0 +1,6 @@
+<form action="<%= goal_url(goal) %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <%= auth_token %>
+
+  <input type="submit" value="delete_'<%= goal.title %>'_goal">
+</form>
