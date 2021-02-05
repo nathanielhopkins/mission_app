@@ -7,7 +7,7 @@
   <%= auth_token %>
 
   <label for="title">Title:</label>
-  <input id="title" type="text" name="goal[title]">
+  <input id="title" type="text" name="goal[title]" value="<%= goal.title %>">
  
   <label for="details">Details:</label>
   <textarea id="details" name="goal[details]"><%= goal.details %></textarea>

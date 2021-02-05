@@ -7,3 +7,6 @@
   <p><strong>Finished?:</strong> <%= @goal.completed==true ? "Completed" : "Ongoing" %></p>
   <p><%= render "shared/goal_complete_button", goal: @goal %></p>
 </div>
+<br>
+<br>
+<p><a data-turbolinks="false" href="<%= edit_goal_url(@goal) %>">Edit '<%= @goal.title %>'</a></p>
