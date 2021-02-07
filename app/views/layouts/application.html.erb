@@ -10,7 +10,10 @@
   </head>
 
   <header class="site-header">
-    <h1 class="main-logo">MISSION APP</h1>
+    <h1 class="main-logo"><a
+      data-turbolinks="false"
+      href="<%= root_url %>" 
+      >MISSION APP</a></h1>
     <div class="login-info">
       <% if current_user %>
         <p><%= current_user.username %></p>
