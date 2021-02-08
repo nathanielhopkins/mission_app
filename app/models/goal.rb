@@ -8,4 +8,12 @@ class Goal < ApplicationRecord
     foreign_key: :user_id,
     primary_key: :id
   )
+
+  has_many(
+    :comments,
+    dependent: :destroy,
+    class_name: "GoalComment",
+    foreign_key: :goal_id,
+    primary_key: :id
+  )
 end

@@ -31,6 +31,14 @@ class User < ApplicationRecord
     primary_key: :id
   )
 
+  has_many(
+    :authored_goal_comments,
+    dependent: :destroy,
+    class_name: "GoalComment",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
