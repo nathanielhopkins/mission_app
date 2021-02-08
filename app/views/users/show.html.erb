@@ -1,6 +1,14 @@
 <h3 class="main-header"><%= @user.username %>'s Profile</h3>
 
-<div class="users-goals">
+<div class="profile-section">
+  <% @user.comments.each do |comment| %>
+    <p><%= comment.body %> -<%= comment.author.username %></p>
+  <% end %>
+
+  <%= render 'shared/user_comment_form', user_id: @user.id %>
+</div>
+
+<div class="profile-section">
 <h3 class="sub-header"><%= @user.username %>'s Goals:</h3>
   <% @user.goals.each do |goal| %>
     <%= render 'shared/basic_goal_info', goal: goal if !goal.private %>
