@@ -12,7 +12,7 @@ RSpec.describe UserCommentsController, type: :controller do
 
       context 'with valid params' do
         it 'saves and displays new comment' do
-          post :create, params: { comment: { author_id: bob49.id, user_id: other_user.id, body: 'magical comment'}}
+          post :create, params: { comment: {user_id: other_user.id, body: 'magical comment'}}
           expect(page).to have_content("Comment added!")
           expect(page).to have_content("magical comment")
         end
@@ -20,7 +20,7 @@ RSpec.describe UserCommentsController, type: :controller do
 
       context 'with invalid params' do
         it 'validates the presence of body' do
-          post :create, params: { comment: { author_id: bob49.id, user_id: other_user.id, body: ''}}
+          post :create, params: { comment: { user_id: other_user.id, body: ''}}
           expect(flash[:errors]).to be_present
         end
       end
