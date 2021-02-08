@@ -13,8 +13,7 @@ RSpec.describe UserCommentsController, type: :controller do
       context 'with valid params' do
         it 'saves and displays new comment' do
           post :create, params: { comment: {user_id: other_user.id, body: 'magical comment'}}
-          expect(page).to have_content("Comment added!")
-          expect(page).to have_content("magical comment")
+          expect(flash[:notices]).to be_present
         end
       end
 
@@ -32,7 +31,7 @@ RSpec.describe UserCommentsController, type: :controller do
       end
 
       it 'redirects to the login page' do
-        post :create, params: { goal: {} }
+        post :create, params:  { comment: {user_id: other_user.id, body: 'magical comment'}}
         expect(response).to redirect_to(new_user_url)
       end
     end
