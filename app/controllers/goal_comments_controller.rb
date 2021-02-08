@@ -1,0 +1,2 @@
+class GoalCommentsController < ApplicationController
+end
