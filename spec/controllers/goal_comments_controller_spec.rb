@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe GoalCommentsController, type: :controller do
   subject(:bob49) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user, username: 'other_user') }
-  let(:goal) { FactoryBot.create(:goal, author: other_user)}
+  let(:goal) { FactoryBot.create(:goal, user: other_user)}
 
   describe "POST #create" do
     context 'when logged in' do
