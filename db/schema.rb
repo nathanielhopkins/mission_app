@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_203532) do
+ActiveRecord::Schema.define(version: 2021_02_09_203824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cheers", force: :cascade do |t|
+    t.integer "giver_id", null: false
+    t.integer "goal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giver_id"], name: "index_cheers_on_giver_id"
+    t.index ["goal_id", "giver_id"], name: "index_cheers_on_goal_id_and_giver_id", unique: true
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
