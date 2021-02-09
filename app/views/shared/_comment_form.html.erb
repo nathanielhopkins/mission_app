@@ -1,0 +1,11 @@
+<h4>New Comment:</h4>
+
+<form action="<%= user_comments_url %>" method="POST">
+    <%= auth_token %>
+        <input type="hidden" name="comment[commentable_id]" value="<%= commentable_id %>">
+        <input type="hidden" name="comment[commentable_type]" value="<%= commentable_type %>">
+
+        <textarea id="Comment" name="comment[body]"></textarea>
+
+        <input type="submit" value="Save Comment">
+</form>
