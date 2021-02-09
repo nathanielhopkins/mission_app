@@ -19,7 +19,7 @@ class User < ApplicationRecord
     class_name: :Cheer,
     foreign_key: :giver_id
   
-  has_many :cheers_receieved,
+  has_many :cheers_received,
     through: :goals,
     source: :cheers
 
