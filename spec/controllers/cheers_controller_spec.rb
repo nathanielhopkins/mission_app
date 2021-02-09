@@ -42,16 +42,16 @@ RSpec.describe CheersController, type: :controller do
       context "with valid params" do
         context "user has cheers remaining" do
           it "increments cheers" do
-            post :create, params: { cheer: { goal_id: goal.id} }
+            post :create, params: { goal_id: goal.id} 
             expect(flash[:notices]).to be_present
           end
         end
 
         context "user has no cheers remaining" do
           it "does not increment cheers and raises error" do
-            current_user.cheers = 0
-            current_user.save
-            post :create, params: { cheer: { goal_id: goal.id} }
+            bob49.cheers = 0
+            bob49.save
+            post :create, params: { goal_id: goal.id }
             expect(flash[:errors]).to be_present
           end
         end
@@ -59,7 +59,8 @@ RSpec.describe CheersController, type: :controller do
 
       context "with invalid params" do
         it "does not increment cheers" do
-          post :create, params: { cheer: { goal_id: nil} }
+          Cheer.create(goal_id: goal.id, giver_id: bob49.id)
+          post :create, params: { goal_id: goal.id }
           expect(flash[:errors]).to be_present
         end
       end
@@ -71,8 +72,8 @@ RSpec.describe CheersController, type: :controller do
       end
 
       it "redirects to login page" do
-        post :create
-        expect(reponse).to redirect_to(new_user_url)
+        post :create, params: { goal_id: goal.id }
+        expect(response).to redirect_to(new_user_url)
       end
     end
   end
