@@ -2,10 +2,10 @@
 
 <div class="profile-section">
   <% @user.comments.each do |comment| %>
-    <p><%= comment.body %> -<%= comment.author.username %></p>
+    <p><%= comment.body %> -<%= User.find_by(id: comment.author_id).username %></p>
   <% end %>
 
-  <%= render 'shared/user_comment_form', user_id: @user.id %>
+  <%= render 'shared/comment_form', commentable_id: @user.id, commentable_type: "User" %>
 </div>
 
 <div class="profile-section">
