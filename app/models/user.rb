@@ -9,13 +9,19 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many(
-    :goals,
+  has_many :goals, 
     dependent: :destroy,
-    class_name: "Goal",
-    foreign_key: :user_id,
-    primary_key: :id
-  )
+    class_name: :Goal,
+    foreign_key: :user_id
+
+
+  has_many :cheers_given, 
+    class_name: :Cheer,
+    foreign_key: :giver_id
+  
+  has_many :cheers_receieved,
+    through: :goals,
+    source: :cheers
 
   def password=(password)
     @password = password
