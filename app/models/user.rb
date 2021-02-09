@@ -59,6 +59,13 @@ class User < ApplicationRecord
     uncompleted = self.goals.where(completed: false)
   end
 
+  #CHEERS
+
+  def decrement_cheer_count!
+    self.cheer_count = self.cheer_count - 1
+    self.save!
+  end
+  
   private
   def ensure_session_token
     self.session_token ||= User.generate_session_token
