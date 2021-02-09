@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Commentable
+  
   validates :username, :password_digest, presence: true
   validates :username, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
@@ -12,30 +14,6 @@ class User < ApplicationRecord
     dependent: :destroy,
     class_name: "Goal",
     foreign_key: :user_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :authored_comments,
-    dependent: :destroy,
-    class_name: "UserComment",
-    foreign_key: :author_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :comments,
-    dependent: :destroy,
-    class_name: "UserComment",
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :authored_goal_comments,
-    dependent: :destroy,
-    class_name: "GoalComment",
-    foreign_key: :author_id,
     primary_key: :id
   )
 
