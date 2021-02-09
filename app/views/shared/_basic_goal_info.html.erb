@@ -10,4 +10,6 @@
   <p><%= render "shared/goal_complete_button", goal: goal %></p>
 
   <p><%= render "shared/goal_delete_button", goal: goal %></p>
+<% elsif goal.user_id != current_user.id && !goal.cheers.exists?(giver_id: current_user.id) %>
+  <p><%= render "shared/cheer_button", goal: goal %></p>
 <% end %>
