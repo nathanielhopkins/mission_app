@@ -1,0 +1,7 @@
+<h3 class="main-header">My Cheers</h3>
+
+<% @cheers.each do |cheer| %>
+  <p><strong>Cheer given by:</strong> <%= cheer.giver.username %></p>
+  <p><strong>For goal of:</strong> <%= cheer.goal.title%></p>
+  <br>
+<% end %>
