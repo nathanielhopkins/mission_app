@@ -30,12 +30,18 @@
   </header>
   <br>
   <body>
+    <div class="Navigation Links">
+      <a data-turbolinks="false" href="<%= new_goal_url %>">New Goal</a>
+      <a data-turbolinks="false" href="<%= cheers_url %>">My Cheers!</a>
+    </div>
     <div class="notices/errors">
       <% if flash[:notices] %>
+        <br>
         <%= flash[:notices].join(", ") %>
         <br>
       <% end %>
       <% if flash[:errors] %>
+        <br>
         <%= flash[:errors].join(", ") %>
         <br>
       <% end %>
