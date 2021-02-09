@@ -62,7 +62,7 @@ class User < ApplicationRecord
   #CHEERS
 
   def decrement_cheer_count!
-    self.cheer_count = self.cheer_count - 1
+    self.cheers -= 1
     self.save!
   end
   
