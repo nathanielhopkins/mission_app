@@ -16,8 +16,8 @@
 <div class="goal-comments">
   <h3>Comments</h3>
   <% @goal.comments.each do |comment| %>
-    <p><%= comment.body %> -<%= comment.author.username %></p>
+    <p><%= comment.body %> -<%= User.find_by(id: comment.author_id).username %></p>
   <% end %>
 
-  <%= render 'shared/goal_comment_form', goal_id: @goal.id %>
+  <%= render 'shared/comment_form', commentable_id: @goal.id, commentable_type: "Goal" %>
 </div>
