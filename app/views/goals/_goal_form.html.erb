@@ -6,19 +6,25 @@
   <input type="hidden" name="_method" value="<%= action_method %>">
   <%= auth_token %>
 
+  <p>
   <label for="title">Title:</label>
   <input id="title" type="text" name="goal[title]" value="<%= goal.title %>">
- 
+  </p>
+
+  <p>
   <label for="details">Details:</label>
   <textarea id="details" name="goal[details]"><%= goal.details %></textarea>
+  </p>
 
-  <label for="private?">Private?</label>
-  <input id="private?" type="checkbox" name="goal[private]"
+  <p>
+  <label for="private">Private?</label>
+  <input id="private" type="checkbox" name="goal[private]"
     <%= 'checked="true"' if goal.private == true %>>
-
-  <label for="completed?">Completed?</label>
-  <input id="completed?" type="checkbox" name="goal[completed]"
+  
+  <label for="completed">Completed?</label>
+  <input id="completed" type="checkbox" name="goal[completed]"
     <%= 'checked="true"' if goal.completed == true %>>
+  </p>
   
   <input type="submit" value="<%= button_text %>">
 </form>

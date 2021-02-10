@@ -1,0 +1,139 @@
+p, input, label, .nav-links {
+  font-family: 'Source Sans Pro';
+  font-size: 18px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel';
+}
+
+
+body{
+  background-color: #000000;
+}
+
+.main-header {
+  font-family: 'Cinzel', bold;
+  font-size: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.sub-header {
+  font-family: 'Cinzel';
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+  a {
+  background-color: #3a3a35;
+  color: #dce805;
+  margin-right: 30px;
+  margin-left: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 10px;
+
+    &:hover {
+      transition: .5sec;
+      color: white;
+      background-color: #484842;
+      cursor: pointer;
+    }
+  }
+}
+
+.notices-errors {
+  p {
+    font-weight: bold;
+    font-size: 20px;
+    color: red;
+    margin-bottom: 20px;
+  }
+}
+
+.main-content{
+  width: 900px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 30px;
+  border: solid grey;
+  border-width: 0 5px;
+  background-color: hsl(0, 0%, 80%);
+
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  .site-header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  
+    a {
+      color: #dce805;
+    }
+  
+    .main-logo{
+      font-family: 'Cinzel', bold;
+      font-size: 75px;
+      display: block;
+      background-color: #3a3a35;
+      color: #dce805;
+      margin-bottom: 30px;
+      padding-left: 30px;
+      padding-right: 50px;
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-radius: 15px;
+      border-width: 1.5px;
+      border-color: #000000;
+      border-style: solid;
+
+      &:hover {
+        transition: .5sec;
+        color: white;
+        background-color: #484842;
+        cursor: pointer;
+      }
+    }
+  
+    .login-info{
+      margin-left: 100px;
+      flex-flow: column wrap;
+      justify-content: right;
+
+      a, input[type="submit"]{
+        font-family: "Source Sans Pro";
+        font-size: 18px;
+        display: block;
+        background-color: #3a3a35;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        color: hsl(63, 96%, 46%);
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 7px;
+
+        &:hover {
+          transition: .5sec;
+          color: white;
+          background: #484842;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

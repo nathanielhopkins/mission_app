@@ -1,0 +1,45 @@
+.form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    display: flex;
+    margin-bottom: 18px;
+    justify-content: space-around;
+
+    label, input {
+      display: block;
+    }
+
+    label {
+      padding-right: 5px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 75%;
+    }
+
+  }
+
+  input[type="submit"] {
+    align-self: flex-end;
+    background-color:  #3a3a35;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    color: #FDDB61;
+    font-size: 20px;
+
+    &:hover {
+      transition: .5sec;
+      color: white;
+      background-color: #484842;
+      cursor: pointer;
+    }
+  }
+}

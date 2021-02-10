@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
+  <div class="main-content">
   <header class="site-header">
     <h1 class="main-logo"><a
       data-turbolinks="false"
@@ -16,37 +17,38 @@
       >MISSION APP</a></h1>
     <div class="login-info">
       <% if current_user %>
-        <p><%= current_user.username %></p>
+        <p><a data-turbolinks="false" href="<%= user_url(current_user)%>"><%= current_user.username %></a></p>
         <form action="<%= session_url %>" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <%= auth_token %>
           <input type="submit" value="Logout">
         </form>
       <% else %>
-        <p><a data-turbolinks="false" href="<%= new_session_url %>">Login</a></p>
-        <p><a data-turbolinks="false" href="<%= new_user_url %>">Sign Up</a></p>
+        <a class="login-link" data-turbolinks="false" href="<%= new_session_url %>">Login</a>
+        <a class="login-link" data-turbolinks="false" href="<%= new_user_url %>">Sign Up</a>
       <% end %>
     </div>
   </header>
   <br>
   <body>
-    <div class="Navigation Links">
+    <div class="nav-links">
       <a data-turbolinks="false" href="<%= new_goal_url %>">New Goal</a>
       <a data-turbolinks="false" href="<%= cheers_url %>">My Cheers!</a>
     </div>
-    <div class="notices/errors">
+    <div class="notices-errors">
       <% if flash[:notices] %>
-        <br>
+        <p>
         <%= flash[:notices].join(", ") %>
-        <br>
+        </p>
       <% end %>
       <% if flash[:errors] %>
-        <br>
+        <p>
         <%= flash[:errors].join(", ") %>
-        <br>
+        </p>
       <% end %>
     </div>
     <%= yield %>
   </body>
+  </div>
   </html>
   

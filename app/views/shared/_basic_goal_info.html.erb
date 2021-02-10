@@ -1,15 +1,17 @@
-<p><a data-turbolinks="false" 
-    href="<%= goal_url(goal) %>"
-    ><%= goal.title %></a></p>
-
-<p><i><%= (goal.private == false) ? "public" : "private" %></i></p>
-
-<p><i><%= (goal.completed == false) ? "Ongoing" : "Complete" %></i></p>
-
-<% if goal.user_id == current_user.id %>
-  <p><%= render "shared/goal_complete_button", goal: goal %></p>
-
-  <p><%= render "shared/goal_delete_button", goal: goal %></p>
-<% elsif goal.user_id != current_user.id && !goal.cheers.exists?(giver_id: current_user.id) %>
-  <p><%= render "shared/cheer_button", goal: goal %></p>
-<% end %>
+<div class="basic-goal-info">
+  <p><a class="goal-title-link" data-turbolinks="false" 
+      href="<%= goal_url(goal) %>"
+      ><%= goal.title %></a></p>
+  
+  <p><i><%= (goal.private == false) ? "public" : "private" %></i></p>
+  
+  <p><i><%= (goal.completed == false) ? "Ongoing" : "Complete" %></i></p>
+  
+  <% if goal.user_id == current_user.id %>
+    <p><%= render "shared/goal_complete_button", goal: goal %></p>
+  
+    <p><%= render "shared/goal_delete_button", goal: goal %></p>
+  <% elsif goal.user_id != current_user.id && !goal.cheers.exists?(giver_id: current_user.id) %>
+    <p><%= render "shared/cheer_button", goal: goal %></p>
+  <% end %>
+</div>
