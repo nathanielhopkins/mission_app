@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  subject(:user) { FactoryBot.create(:user)}
+  let(:other_user) { FactoryBot.create(:user, username: "other_user")}
 
   describe "GET #new" do
 
@@ -50,12 +52,15 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #index' do
+    before :each do
+      allow(controller).to receive(:current_user) { user }
+    end
 
     it "returns a successful response" do
       get :index, {}
       expect(response).to be_successful
     end
-
+ 
     it 'renders the index template' do
       get :index
       expect(response).to render_template("index")
@@ -63,9 +68,12 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #show' do
+    before :each do
+      allow(controller).to receive(:current_user) { user }
+    end
+
 
     it 'renders the show template' do
-      user = FactoryBot.create(:user)
       get :show, params: {id: user.id}
       expect(response).to render_template("show")
     end
@@ -80,82 +88,6 @@ RSpec.describe UsersController, type: :controller do
 
         expect(response).not_to render_template(:show)
       end
-    end
-  end
-
-  describe 'GET #edit' do
-
-  it "returns a successful response" do
-    get :edit, params: {id: FactoryBot.create(:user)}
-    expect(response).to be_successful
-  end
-    
-  it "renders edit template" do
-    get :edit, params: {id: FactoryBot.create(:user)}
-    expect(response).to render_template("edit")
-  end
-end
-
-  describe 'PUT #update' do
-    before :each do
-      @user = FactoryBot.create(:user)
-    end
-
-    context "with invalid params" do
-
-      it "renders the edit template" do
-        put :update, params: { id: @user, user: { username: ''}}
-        expect(response).to render_template('edit')
-      end
-
-      it "validates the presence of the user's username and password" do
-        put :update, params: { id: @user, user: { username: ''}}
-        expect(response).to render_template('edit')
-        expect(flash[:errors]).to be_present
-      end
-
-      it "validates that the password is at least 6 characters long" do
-        put :update, params: { id: @user, user: { password: 'buns'}}
-        expect(response).to render_template('edit')
-        expect(flash[:errors]).to eq(["Password is too short (minimum is 6 characters)"])
-      end
-
-      it "does not change @user's attributes" do
-        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bob") }
-        @user.reload
-        expect(@user.username).to eq("bob49")
-        expect(@user.password).to_not eq("bob50")
-      end
-    end
-
-    context "with valid params" do
-      it "changes @user's attributes" do
-        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user, username: "bob50", password: "bobpassword") }
-        @user.reload
-        expect(@user.username).to eq("bob50")
-      end
-
-      it "redirects to the updated user" do
-        put :update, params: { id: @user, user: FactoryBot.attributes_for(:user) }
-        expect(response).to redirect_to @contact
-      end
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    before :each do
-      @user = FactoryBot.create(:user)
-    end
-
-    it "deletes the user" do
-      expect{
-        delete :destroy, params: { id: @user }
-      }.to change(User,:count).by(-1)
-    end
-
-    it "redirects to users#index" do
-      delete :destroy, params: { id: @user }
-      expect(response).to redirect_to users_url
     end
   end
 end
