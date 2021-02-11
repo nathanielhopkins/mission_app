@@ -1,24 +1,59 @@
-<h3 class="main-heading">Goal:</h3>
+<h3 class="main-header">Goal:</h3>
 
 <div class="goal-details">
-  <p><strong>Title:</strong> <%= @goal.title %></p>
-  <p><strong>Details:</strong> <%= @goal.details %></p>
-  <p><strong>Cheers:</strong> <%= @goal.cheers.length %></p>
-  <p><strong>Visibility:</strong> <%= @goal.private == true ? "Private" : "Public"%></p>
-  <p><strong>Finished?:</strong> <%= @goal.completed==true ? "Completed" : "Ongoing" %></p>
-  <p><%= render "shared/goal_complete_button", goal: @goal if @goal.user_id == current_user.id %></p>
+<table>
+  <tr>
+    <th>Title:</th>
+    <td><%= @goal.title %></td>
+  </tr>
+  <tr>
+    <th>Details:</th>
+    <td><%= @goal.details %></td>
+  </tr>
+  <tr>
+    <th>Cheers:</th>
+    <td> <%= @goal.cheers.length %></td>
+  </tr>
+  <tr>
+    <th>Visibility:</th>
+    <td>
+      <% if @goal.private %>
+        Private
+      <% else %>
+        Public
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>Finished?:</th>
+    <td>
+      <% if @goal.completed %>
+        Completed
+      <% else %>
+        Ongoing
+      <% end %>
+    </td>
+  </tr>
+  <% if @goal.user_id == current_user.id %>
+    <tr>
+      <th>Completed?:</th>
+      <td><%= render "shared/goal_complete_button" , goal: @goal %></td>
+    </tr>
+  <% end %>
+</table>
 </div>
 <br>
 <br>
 <% if @goal.user_id == current_user.id %>
-  <p><a data-turbolinks="false" href="<%= edit_goal_url(@goal) %>">Edit '<%= @goal.title %>'</a></p>
+  <p class="nav-links"><a data-turbolinks="false" href="<%= edit_goal_url(@goal) %>">Edit '<%= @goal.title %>'</a></p>
 <% end %>
 
-<div class="goal-comments">
-  <h3>Comments</h3>
+<div class="profile-section">
+  <h3 class="sub-header">Comments</h3>
   <% @goal.comments.each do |comment| %>
     <p><%= comment.body %> -<%= User.find_by(id: comment.author_id).username %></p>
   <% end %>
-
+  <p>
   <%= render 'shared/comment_form', commentable_id: @goal.id, commentable_type: "Goal" %>
+  </p>
 </div>

@@ -29,31 +29,6 @@ body{
   justify-content: center;
 }
 
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-
-  a {
-  background-color: #3a3a35;
-  color: #dce805;
-  margin-right: 30px;
-  margin-left: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 10px;
-
-    &:hover {
-      transition: .5sec;
-      color: white;
-      background-color: #484842;
-      cursor: pointer;
-    }
-  }
-}
-
 .notices-errors {
   p {
     font-weight: bold;

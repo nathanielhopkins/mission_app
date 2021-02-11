@@ -2,9 +2,11 @@
 
 <div class="profile-section">
 <h3 class="sub-header"><%= @user.username %>'s Goals:</h3>
-  <% @user.goals.each do |goal| %>
-    <%= render 'shared/basic_goal_info', goal: goal if !goal.private %>
-  <% end %>
+  <ul class="goal-list">
+    <% @user.goals.each do |goal| %>
+      <li><%= render 'shared/basic_goal_info', goal: goal if !goal.private %></li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="profile-section">
@@ -19,4 +21,4 @@
 </div>
 
 <br>
-<p><a class="button" data-turbolinks="false" href="<%= users_url %>">All Users</a></p>
+<p class="nav-links"><a data-turbolinks="false" href="<%= users_url %>">All Users</a></p>

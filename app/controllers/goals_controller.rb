@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
   end
 
   def index
-    @goals = current_user.goals
+    @goals = current_user.goals.order(:id)
     render :index
   end
 

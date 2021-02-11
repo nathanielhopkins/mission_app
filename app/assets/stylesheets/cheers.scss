@@ -1,3 +1,28 @@
-// Place all the styles related to the Cheers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.cheer {
+    th, td {
+    background-color: rgb(196, 187, 188);
+    border: 1px solid black;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    background-color: rgb(135, 114, 116);
+    width: 30%;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  td {
+    width: 70%;
+    padding-left: 10px;
+  }
+
+}
