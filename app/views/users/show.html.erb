@@ -4,7 +4,11 @@
 <h3 class="sub-header"><%= @user.username %>'s Goals:</h3>
   <ul class="goal-list">
     <% @user.goals.each do |goal| %>
-      <li><%= render 'shared/basic_goal_info', goal: goal if !goal.private %></li>
+      <% if current_user.id != @user.id %>
+        <li><%= render 'shared/basic_goal_info', goal: goal if !goal.private %></li>
+      <% else %>
+        <li><%= render 'shared/basic_goal_info' , goal: goal %></li>
+      <% end %>
     <% end %>
   </ul>
 </div>
